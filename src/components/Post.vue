@@ -1,0 +1,88 @@
+<script setup>
+  import { computed } from 'vue';
+  
+  const props = defineProps({
+    post: {
+      title: {
+        type: String,
+        required: true,
+      },
+      body: {
+        type: String,
+        required: true,
+      },
+      id: {
+        type: [Number, String],
+        required: true,
+      },
+    }
+  });
+
+  const postPath = computed(() => `/post/${props.post.id}`);
+
+</script>
+
+<template>
+  <article class='post'>
+    <h2 class='title'>{{ post.title }}</h2>
+    <p class='desc'>{{ post.body }}</p>
+    <RouterLink 
+      :to='postPath'
+      class="link"
+    >
+      Смотреть
+    </RouterLink>
+  </article>
+</template>
+
+<style scoped>
+  .post {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 15px;
+    height: 100%;
+    border-radius: 5px;
+  }
+
+  .title {
+    margin: 0 0 15px 0;
+  }
+
+  .desc {
+    margin: 0 0 30px 0;
+    font-size: 14px;
+    color: var(--desc-color);
+  }
+
+  .link {
+    margin-top: auto;
+    display: inline-block;
+    border: 2px solid var(--accent-color);
+    padding: 8px 10px;
+    color: var(--accent-color);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    transition: box-shadow 0.3s, transform 0.3s, color 0.3s, background-color 0.3s;
+    outline: none;
+  }
+
+  .link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px 7px 15px -3px var(--accent-color);
+  }
+
+  .link:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: none;
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  .link:focus-visible {
+    outline: 1px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,73 @@
+<script setup>
+  import router from '@/router';
+
+  import Icon from './Icon.vue';
+  import IconBack from './icons/IconBack.vue';
+
+  const gotoBack = () => router.go(-1);
+</script>
+
+<template>
+  <button
+    class='btn'
+    type='button'
+    @click='gotoBack'
+  >
+    <Icon
+      width='52'
+      height='52'
+      view-box='0 0 52 52'
+      icon-name="back"
+    >
+      <IconBack />
+    </Icon>
+  </button>  
+</template>
+
+<style scoped>
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--accent-color);
+    padding: 8px 10px;
+    width: 52px;
+    height: 52px;
+    color: var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    transition: box-shadow 0.3s, transform 0.3s, color 0.3s, background-color 0.3s;
+    outline: none;
+  }
+
+  .btn svg {
+    width: 30px;
+  }
+
+  .btn svg path {
+    transition: fill 0.3s;
+    fill: var(--accent-color);
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px 7px 15px -3px var(--accent-color);
+  }
+
+  .btn:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: none;
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  .btn:active svg path {
+    fill: white;
+  }
+
+  .btn:focus-visible {
+    outline: 1px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+</style>
